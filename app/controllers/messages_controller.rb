@@ -4,14 +4,16 @@ class MessagesController < ApplicationController
   end
 
   def new
+    @contact = Contact.find(params[:contact_id])
     @message = Message.new
   end
 
   def create
-    @message = Message.new(message_params)
+    @contact = Contact.find(params[:contact_id])
+    @message = @contact.messages.new(message_params)
     if @message.save
       flash[:notice] = "Sent"
-      redirect_to messages_path
+      redirect_to contact_path(@contact)
     else
       render 'new'
     end
@@ -24,6 +26,6 @@ class MessagesController < ApplicationController
   private
 
   def message_params
-    params.require(:message).permit(:to, :from, :body)
+    params.require(:message).permit(:from, :body, :to => [])
   end
 end

@@ -1,13 +1,4 @@
-<h1>New Message</h1>
-
-<% if @message.errors.any? %>
-  <p>Something went wrong:</p>
-  <ul>
-    <% @message.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
+<%= render 'layouts/errors', :object => @message %>
 
 <%= form_for [@contact, @message] do |f| %>
   <%= f.label :to %>

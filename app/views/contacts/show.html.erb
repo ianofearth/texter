@@ -1,0 +1,12 @@
+<h1><%= @contact.name %></h1>
+<h3><%= @contact.number %></h3>
+
+
+<ul>
+  <% @messages.each do |message| %>
+
+    <li><%= link_to message.body, contact_message_path(@contact, message) %></li>
+  <% end %>
+</ul>
+
+<%= link_to "New Message", new_contact_message_path(@contact) %>

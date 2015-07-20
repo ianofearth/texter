@@ -1,6 +1,13 @@
 class Message < ActiveRecord::Base
   before_create :send_sms
 
+  belongs_to :contact
+
+  validates :to, :presence => true
+  validates :from, :presence => true
+  validates :body, :presence => true
+
+
 private
 
   def send_sms
