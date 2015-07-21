@@ -1,11 +1,13 @@
 <%= form_tag mass_texts_path, :method => :post do %>
-<ul>
-  <% for contact in @contacts %>
-  <li>
-    <%= check_box_tag "contact_ids[]", contact.id %>
-    <%= contact.name %>
-  </li>
-  <% end %>
-</ul>
-<%= submit_tag "Send Mass Text" %>
+  <ul>
+    <% for contact in @contacts %>
+    <li>
+      <%= check_box_tag "contact_ids[]", contact.id %>
+      <%= contact.name %>
+    </li>
+    <% end %>
+  </ul>
+  <%= label_tag :body %>
+  <%= text_field_tag :body %>
+  <%= submit_tag "Send Mass Text" %>
 <% end %>
